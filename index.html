@@ -3,6 +3,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<<<<<<< HEAD
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>jsTree v.1.0 - Demo</title>
 	<script type="text/javascript" src="../_lib/jquery.js"></script>
@@ -63,7 +64,7 @@ $(function () {
 	// 1) you can call most functions just by selecting the container and calling `.jstree("func",`
 	setTimeout(function () { $("#demo1").jstree("set_focus"); }, 500);
 	// with the methods below you can call even private functions (prefixed with `_`)
-	// 2) you can get the focused instance using `$.jstree._focused()`.
+	// 2) you can get the focused instance using `$.jstree._focused()`. 
 	setTimeout(function () { $.jstree._focused().select_node("#phtml_1"); }, 1000);
 	// 3) you can use $.jstree._reference - just pass the container, a node inside it, or a selector
 	setTimeout(function () { $.jstree._reference("#phtml_1").close_node("#phtml_1"); }, 1500);
@@ -138,7 +139,7 @@ $(function () {
 	$("#demo3")
 		.jstree({ "plugins" : ["themes","html_data","ui"] })
 		// 1) if using the UI plugin bind to select_node
-		.bind("select_node.jstree", function (event, data) {
+		.bind("select_node.jstree", function (event, data) { 
 			// `data.rslt.obj` is the jquery extended node that was clicked
 			alert(data.rslt.obj.attr("id"));
 		})
@@ -171,7 +172,7 @@ $(function () {
 	</ul>
 </div>
 <style type="text/css" class="source below">
-#demo4 a { white-space:normal !important; height: auto; padding:1px 2px; }
+#demo4 a { white-space:normal !important; height: auto; padding:1px 2px; } 
 #demo4 li > ins { vertical-align:top; }
 #demo4 .jstree-hovered, #demo4 .jstree-clicked { border:0; }
 </style>
@@ -206,7 +207,7 @@ $(function () {
 <style type="text/css" class="source below">
 #demo5 li { min-height:22px; line-height:22px; }
 #demo5 a { line-height:20px; height:20px; font-size:10px; }
-#demo5 a ins { height:20px; width:20px; background-position:-56px -17px; }
+#demo5 a ins { height:20px; width:20px; background-position:-56px -17px; } 
 </style>
 <script type="text/javascript">
 $(function () {
@@ -248,29 +249,29 @@ $("#demo")
 	.bind("before.jstree", function (e, data) {
 		$("#alog").append(data.func + "<br />");
 	})
-	.jstree({
+	.jstree({ 
 		// List of active plugins
-		"plugins" : [
-			"themes","json_data","ui","crrm","cookies","dnd","search","types","hotkeys","contextmenu"
+		"plugins" : [ 
+			"themes","json_data","ui","crrm","cookies","dnd","search","types","hotkeys","contextmenu" 
 		],
 
 		// I usually configure the plugin that handles the data first
 		// This example uses JSON as it is most common
-		"json_data" : {
+		"json_data" : { 
 			// This tree is ajax enabled - as this is most common, and maybe a bit more complex
 			// All the options are almost the same as jQuery's AJAX (read the docs)
 			"ajax" : {
 				// the URL to fetch the data
 				"url" : "./server.php",
 				// the `data` function is executed in the instance's scope
-				// the parameter is the node being loaded
+				// the parameter is the node being loaded 
 				// (may be -1, 0, or undefined when loading the root nodes)
-				"data" : function (n) {
+				"data" : function (n) { 
 					// the result is fed to the AJAX request `data` option
-					return {
-						"operation" : "get_children",
-						"id" : n.attr ? n.attr("id").replace("node_","") : 1
-					};
+					return { 
+						"operation" : "get_children", 
+						"id" : n.attr ? n.attr("id").replace("node_","") : 1 
+					}; 
 				}
 			}
 		},
@@ -282,10 +283,10 @@ $("#demo")
 				"url" : "./server.php",
 				// You get the search string as a parameter
 				"data" : function (str) {
-					return {
-						"operation" : "search",
-						"search_str" : str
-					};
+					return { 
+						"operation" : "search", 
+						"search_str" : str 
+					}; 
 				}
 			}
 		},
@@ -296,7 +297,7 @@ $("#demo")
 			// Those two checks may slow jstree a lot, so use only when needed
 			"max_depth" : -2,
 			"max_children" : -2,
-			// I want only `drive` nodes to be root nodes
+			// I want only `drive` nodes to be root nodes 
 			// This will prevent moving or creating any other type as a root node
 			"valid_children" : [ "drive" ],
 			"types" : {
@@ -318,7 +319,7 @@ $("#demo")
 						"image" : "./folder.png"
 					}
 				},
-				// The `drive` nodes
+				// The `drive` nodes 
 				"drive" : {
 					// can have files and folders inside, but NOT other `drive` nodes
 					"valid_children" : [ "default", "folder" ],
@@ -342,22 +343,22 @@ $("#demo")
 			"initially_select" : [ "node_4" ]
 		},
 		// the core plugin - not many options here
-		"core" : {
+		"core" : { 
 			// just open those two nodes up
 			// as this is an AJAX enabled tree, both will be downloaded from the server
-			"initially_open" : [ "node_2" , "node_3" ]
+			"initially_open" : [ "node_2" , "node_3" ] 
 		}
 	})
 	.bind("create.jstree", function (e, data) {
 		$.post(
-			"./server.php",
-			{
-				"operation" : "create_node",
-				"id" : data.rslt.parent.attr("id").replace("node_",""),
+			"./server.php", 
+			{ 
+				"operation" : "create_node", 
+				"id" : data.rslt.parent.attr("id").replace("node_",""), 
 				"position" : data.rslt.position,
 				"title" : data.rslt.name,
 				"type" : data.rslt.obj.attr("rel")
-			},
+			}, 
 			function (r) {
 				if(r.status) {
 					$(data.rslt.obj).attr("id", "node_" + r.id);
@@ -374,10 +375,10 @@ $("#demo")
 				async : false,
 				type: 'POST',
 				url: "./server.php",
-				data : {
-					"operation" : "remove_node",
+				data : { 
+					"operation" : "remove_node", 
 					"id" : this.id.replace("node_","")
-				},
+				}, 
 				success : function (r) {
 					if(!r.status) {
 						data.inst.refresh();
@@ -388,12 +389,12 @@ $("#demo")
 	})
 	.bind("rename.jstree", function (e, data) {
 		$.post(
-			"./server.php",
-			{
-				"operation" : "rename_node",
+			"./server.php", 
+			{ 
+				"operation" : "rename_node", 
 				"id" : data.rslt.obj.attr("id").replace("node_",""),
 				"title" : data.rslt.new_name
-			},
+			}, 
 			function (r) {
 				if(!r.status) {
 					$.jstree.rollback(data.rlbk);
@@ -407,10 +408,10 @@ $("#demo")
 				async : false,
 				type: 'POST',
 				url: "./server.php",
-				data : {
-					"operation" : "move_node",
-					"id" : $(this).attr("id").replace("node_",""),
-					"ref" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace("node_",""),
+				data : { 
+					"operation" : "move_node", 
+					"id" : $(this).attr("id").replace("node_",""), 
+					"ref" : data.rslt.cr === -1 ? 1 : data.rslt.np.attr("id").replace("node_",""), 
 					"position" : data.rslt.cp + i,
 					"title" : data.rslt.name,
 					"copy" : data.rslt.cy ? 1 : 0
@@ -435,7 +436,7 @@ $("#demo")
 </script>
 <script type="text/javascript" class="source below">
 // Code for the menu buttons
-$(function () {
+$(function () { 
 	$("#mmenu input").click(function () {
 		switch(this.id) {
 			case "add_default":
@@ -457,5 +458,15 @@ $(function () {
 
 </div>
 
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Ссаная бабка.</title>
+</head>
+<body>
+    <body style="background-image:url(https://avatars.mds.yandex.net/get-pdb/918543/39ddd345-1f56-4de3-a60d-b21f4ad24245/s1200)">
+    <h1><color="red">Тема, ты если в этом дерьме не разберешься, я задушу твою бабку нахуй!</color></h1>
+    <h2>ЖЕКА МЫ БЛЯТЬ ЛОХИ</h2>
+>>>>>>> c0d6ed4d12dbf003a8012d87918e97f22862d7d0
 </body>
 </html>
