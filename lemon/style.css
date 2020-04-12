@@ -1,0 +1,16 @@
+:root {
+  --bg: #fceec0;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+}
+
+#lemon {
+  cursor: pointer;
+}
